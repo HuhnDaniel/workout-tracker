@@ -4,14 +4,26 @@ const Schema = mongoose.Schema;
 
 const ExerciseSchema = new Schema({
     type: {
-        String,
+        type: String,
         trim: true
     },
     name: {
-        String,
+        type: String,
         trim: true
     },
     duration: {
+        type: Number,
+        required: "Enter an amount"
+    },
+    weight: {
+        type: Number,
+        required: "Enter an amount"
+    },
+    reps: {
+        type: Number,
+        required: "Enter an amount"
+    },
+    sets: {
         type: Number,
         required: "Enter an amount"
     }
