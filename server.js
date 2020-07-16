@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
-const htmlRoutes = require("./routes/htmlRoutes")
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -16,6 +17,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workouts", {
   useUnifiedTopology: true
 });
 
+app.use("/api", apiRoutes);
 app.use("/", htmlRoutes);
 
 app.listen(PORT, () => {
