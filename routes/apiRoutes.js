@@ -9,7 +9,7 @@ router.get("/workouts", (req, res) => {
         })
         .catch(err => {
             res.status(400).json(err);
-        })
+        });
 });
 
 router.post("/workouts", ({ body }, res) => {
@@ -24,7 +24,6 @@ router.post("/workouts", ({ body }, res) => {
 });
 
 router.put("/workouts/:id", ({ body, params }, res) => {
-    console.log(body, params);
     Workout.updateOne(
         {
             _id: params.id
@@ -44,6 +43,17 @@ router.put("/workouts/:id", ({ body, params }, res) => {
             }
         }
     );
+});
+
+router.get("/workouts/range", (req, res) => {
+    Workout.find({})
+    .sort({ day: 1 })
+    .then(dbWorkout => {
+        res.json(dbWorkout);
+    })
+    .catch(err => {
+        res.status(400).json(err);
+    });
 });
 
 module.exports = router;
